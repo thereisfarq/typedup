@@ -12,27 +12,27 @@
 }
 
 .logo--lg .logo__typed {
-  font-size: 2.75rem;
+  font-size: 2.2rem;
 }
 
 .logo--lg .logo__up {
-  height: 2.75rem;
+  height: 2.2rem;
   width: auto;
 }
 
 .logo--mark-only.logo--lg .logo__up {
-  height: 4.5rem;
+  height: 3.6rem;
 }
 
 .logo--sm .logo__typed {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .logo--sm .logo__up {
-  height: 1.5rem;
+  height: 1.2rem;
   width: auto;
 }
 
 .logo--mark-only.logo--sm .logo__up {
-  height: 2rem;
+  height: 1.6rem;
 }
