@@ -1,4 +1,5 @@
 import type { FontCategory } from "@/game/categories";
+import { apiUrl, assetUrl } from "@/lib/baseUrl";
 
 export interface FontEntry {
   id: string;
@@ -34,13 +35,13 @@ function writeCache(fonts: FontEntry[]): void {
 }
 
 async function fetchLocalCatalog(): Promise<FontEntry[]> {
-  const res = await fetch("/api/local-fonts");
+  const res = await fetch(apiUrl("api/local-fonts"));
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return (await res.json()) as FontEntry[];
 }
 
 async function loadStaticCatalog(): Promise<FontEntry[]> {
-  const res = await fetch("/local-fonts-catalog.json");
+  const res = await fetch(assetUrl("local-fonts-catalog.json"));
   if (!res.ok) throw new Error("Static catalog unavailable");
   return (await res.json()) as FontEntry[];
 }
@@ -66,7 +67,7 @@ export function loadFontFace(entry: FontEntry): Promise<void> {
   if (loadedIds.has(entry.id)) return Promise.resolve();
 
   return (async () => {
-    const res = await fetch(`/api/local-fonts/${entry.id}`);
+    const res = await fetch(apiUrl(`api/local-fonts/${entry.id}`));
     if (!res.ok) throw new Error(`Failed to load ${entry.family}`);
 
     const buffer = await res.arrayBuffer();
