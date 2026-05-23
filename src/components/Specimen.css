@@ -1,0 +1,35 @@
+.specimen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  min-height: 200px;
+}
+
+.specimen__text {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.35;
+  max-width: 42rem;
+  opacity: 0.35;
+  transition: opacity var(--transition-fast);
+  cursor: text;
+  outline: none;
+  border: none;
+  min-height: 1.35em;
+}
+
+.specimen__text:focus {
+  opacity: 1;
+}
+
+.specimen__text--loaded {
+  opacity: 1;
+}
+
+.specimen__text:empty::before {
+  content: "Click to type anything…";
+  opacity: 0.35;
+  font-family: var(--ui-font);
+}

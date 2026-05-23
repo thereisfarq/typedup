@@ -1,0 +1,59 @@
+.font-search {
+  width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
+}
+
+.font-search__input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--fg);
+  font-family: var(--ui-font);
+  font-size: 1.1rem;
+  padding: 0.75rem 0;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.font-search__input:focus {
+  border-color: var(--fg);
+}
+
+.font-search__input:disabled {
+  opacity: 0.4;
+}
+
+.font-search__list {
+  list-style: none;
+  margin-top: 0.75rem;
+  max-height: calc(8 * 2.75rem);
+  overflow-y: auto;
+  border: 1px solid var(--border-subtle);
+}
+
+.font-search__item {
+  width: 100%;
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.95rem;
+  transition: background var(--transition-fast);
+}
+
+.font-search__item:hover:not(:disabled) {
+  background: #f5f5f5;
+}
+
+.font-search__item:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.font-search__empty {
+  padding: 1rem;
+  color: #666666;
+  font-size: 0.9rem;
+}

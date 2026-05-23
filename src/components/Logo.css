@@ -1,0 +1,38 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  line-height: 1;
+}
+
+.logo__typed {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.logo--lg .logo__typed {
+  font-size: 2.75rem;
+}
+
+.logo--lg .logo__up {
+  height: 2.75rem;
+  width: auto;
+}
+
+.logo--mark-only.logo--lg .logo__up {
+  height: 4.5rem;
+}
+
+.logo--sm .logo__typed {
+  font-size: 1.5rem;
+}
+
+.logo--sm .logo__up {
+  height: 1.5rem;
+  width: auto;
+}
+
+.logo--mark-only.logo--sm .logo__up {
+  height: 2rem;
+}

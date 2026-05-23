@@ -1,0 +1,42 @@
+.choices {
+  width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
+}
+
+.choices--grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.choices--stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.choices__btn {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.choices__btn:hover:not(:disabled) {
+  border-color: var(--fg);
+}
+
+.choices__btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.choices__btn--stack {
+  text-align: left;
+}
