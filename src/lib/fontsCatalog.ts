@@ -1,13 +1,14 @@
 import type { FontCategory } from "@/game/categories";
-import { apiUrl, assetUrl } from "@/lib/baseUrl";
+import { assetUrl } from "@/lib/baseUrl";
 
 export interface FontEntry {
   id: string;
   family: string;
   category: FontCategory;
+  url: string;
 }
 
-const CACHE_KEY = "typedup-local-fonts-catalog";
+const CACHE_KEY = "typedup-fonts-catalog";
 const CACHE_TTL_MS = 60 * 60 * 1000;
 const loadedIds = new Set<string>();
 
@@ -34,32 +35,27 @@ function writeCache(fonts: FontEntry[]): void {
   }
 }
 
-async function fetchLocalCatalog(): Promise<FontEntry[]> {
-  const res = await fetch(apiUrl("api/local-fonts"));
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return (await res.json()) as FontEntry[];
-}
-
-async function loadStaticCatalog(): Promise<FontEntry[]> {
-  const res = await fetch(assetUrl("local-fonts-catalog.json"));
-  if (!res.ok) throw new Error("Static catalog unavailable");
-  return (await res.json()) as FontEntry[];
+async function fetchCatalog(): Promise<FontEntry[]> {
+  const res = await fetch(`${assetUrl("local-fonts-catalog.json")}?t=${Date.now()}`);
+  if (!res.ok) throw new Error("Font catalog unavailable");
+  const data = (await res.json()) as FontEntry[];
+  if (!data.length) {
+    throw new Error(
+      "No fonts found. Add .ttf or .otf files to public/fonts/ and restart the dev server.",
+    );
+  }
+  return data;
 }
 
 export async function getFontCatalog(): Promise<FontEntry[]> {
-  const cached = readCache();
-  if (cached?.length) return cached;
-
   try {
-    const catalog = await fetchLocalCatalog();
-    if (!catalog.length) throw new Error("No local fonts found");
+    const catalog = await fetchCatalog();
     writeCache(catalog);
     return catalog;
-  } catch {
-    const staticCatalog = await loadStaticCatalog();
-    if (!staticCatalog.length) throw new Error("No fonts in catalog");
-    writeCache(staticCatalog);
-    return staticCatalog;
+  } catch (err) {
+    const cached = readCache();
+    if (cached?.length) return cached;
+    throw err;
   }
 }
 
@@ -67,15 +63,14 @@ export function loadFontFace(entry: FontEntry): Promise<void> {
   if (loadedIds.has(entry.id)) return Promise.resolve();
 
   return (async () => {
-    const res = await fetch(apiUrl(`api/local-fonts/${entry.id}`));
+    const res = await fetch(assetUrl(entry.url));
     if (!res.ok) throw new Error(`Failed to load ${entry.family}`);
 
     const buffer = await res.arrayBuffer();
-    const face = new FontFace(
-      entry.family,
-      buffer,
-      { style: "normal", weight: "400" },
-    );
+    const face = new FontFace(entry.family, buffer, {
+      style: "normal",
+      weight: "400",
+    });
     await face.load();
     document.fonts.add(face);
     loadedIds.add(entry.id);

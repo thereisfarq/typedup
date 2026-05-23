@@ -1,13 +1,27 @@
 # TypedUp
 
-A minimal black-and-white typography guessing game. Polish your type identification skills across three difficulty levels using **fonts installed on your Mac**.
+A minimal black-and-white typography guessing game.
 
 ## Levels
 
 - **noob** — Pick the correct font name from four options.
-- **advanced** — Search your local catalog and select the right font.
+- **advanced** — Search the catalog and select the right font.
 
 Click the specimen sentence to type any preview text you want (saved between sessions).
+
+## Add your fonts
+
+1. Copy **`.ttf`**, **`.otf`**, or **`.ttc`** files into:
+
+   **`public/fonts/`**
+
+   (subfolders are fine)
+
+2. Restart `npm run dev` — or push to GitHub to rebuild the live site.
+
+3. Commit the font files with your repo if you want them on GitHub Pages.
+
+The app picks one file per font family (preferring regular/normal weights).
 
 ## Development
 
@@ -20,33 +34,17 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173).
 
-On first start, TypedUp scans your **`.ttf` / `.otf` / `.ttc`** files in:
+## Deploy (GitHub Pages)
 
-- `~/Library/Fonts`
-- `/Library/Fonts`
+Push to `main` — the workflow builds and publishes to:
 
-Results are cached in `.typedup/fonts-catalog.json` (family name, category, and one representative file per family). The dev server serves font files at `/api/local-fonts/:id`.
+`https://YOUR_USERNAME.github.io/typedup/`
 
-### Extra font folders
-
-```bash
-TYPEDUP_FONT_DIRS="/path/to/fonts:/other/fonts" npm run dev
-```
-
-Use `:` as the separator on macOS.
-
-## Build & preview
-
-```bash
-npm run build
-npm run preview
-```
-
-`preview` also serves local fonts via the same API. A static catalog is written to `public/local-fonts-catalog.json` at build time for reference; **font specimens still require the local-fonts API** (dev or preview).
+Fonts in `public/fonts/` are included in the build automatically.
 
 ## Stack
 
 - Vite + React + TypeScript
 - React Router
 - Framer Motion
-- [fontkit](https://github.com/foliojs/fontkit) for reading installed font metadata
+- [fontkit](https://github.com/foliojs/fontkit) for font metadata

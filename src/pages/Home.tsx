@@ -11,22 +11,34 @@ const LEVELS = [
 export function Home() {
   return (
     <main className="home page-enter">
-      <div className="home__logo">
-        <Logo size="lg" markOnly />
+      <div className="home__main">
+        <div className="home__logo">
+          <Logo size="lg" markOnly />
+        </div>
+        <nav className="home__levels" aria-label="Difficulty levels">
+          {LEVELS.map(({ level, title, subtitle }) => (
+            <Link
+              key={level}
+              to={`/play/${level}`}
+              className="home__level"
+              onMouseEnter={playHoverSound}
+            >
+              <span className="home__level-title">{title}</span>
+              <span className="home__level-sub">{subtitle}</span>
+            </Link>
+          ))}
+        </nav>
       </div>
-      <nav className="home__levels" aria-label="Difficulty levels">
-        {LEVELS.map(({ level, title, subtitle }) => (
-          <Link
-            key={level}
-            to={`/play/${level}`}
-            className="home__level"
-            onMouseEnter={playHoverSound}
-          >
-            <span className="home__level-title">{title}</span>
-            <span className="home__level-sub">{subtitle}</span>
-          </Link>
-        ))}
-      </nav>
+      <footer className="home__credit">
+        <a
+          href="https://www.ahfos.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseEnter={playHoverSound}
+        >
+          MADE BY AHFOS
+        </a>
+      </footer>
     </main>
   );
 }

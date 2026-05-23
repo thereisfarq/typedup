@@ -168,7 +168,10 @@ export function Play() {
   if (catalogError) {
     return (
       <main className="play play--center page-enter">
-        <p>Could not load fonts.</p>
+        <p className="play__error">
+          No fonts found. Add .ttf or .otf files to{" "}
+          <code>public/fonts/</code> and restart.
+        </p>
         <Link to="/" className="play__back" onMouseEnter={playHoverSound}>
           Home
         </Link>
