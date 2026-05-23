@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from "node:url";
 import { localFontsPlugin } from "./vite-plugin-local-fonts";
 
 export default defineConfig({
+  base: process.env.GITHUB_PAGES ? "/typedup/" : "/",
   plugins: [react(), localFontsPlugin()],
   ssr: {
     external: ["fontkit"],
