@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Barques';
+    src: url('Barques-Thin.eot');
+    src: url('Barques-Thin.eot?#iefix') format('embedded-opentype'),
+        url('Barques-Thin.woff2') format('woff2'),
+        url('Barques-Thin.woff') format('woff'),
+        url('Barques-Thin.ttf') format('truetype'),
+        url('Barques-Thin.svg#Barques-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barques';
+    src: url('Barques-Regular.eot');
+    src: url('Barques-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Barques-Regular.woff2') format('woff2'),
+        url('Barques-Regular.woff') format('woff'),
+        url('Barques-Regular.ttf') format('truetype'),
+        url('Barques-Regular.svg#Barques-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barques';
+    src: url('Barques-ExtraBold.eot');
+    src: url('Barques-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('Barques-ExtraBold.woff2') format('woff2'),
+        url('Barques-ExtraBold.woff') format('woff'),
+        url('Barques-ExtraBold.ttf') format('truetype'),
+        url('Barques-ExtraBold.svg#Barques-ExtraBold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barques';
+    src: url('Barques-Heavy.eot');
+    src: url('Barques-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('Barques-Heavy.woff2') format('woff2'),
+        url('Barques-Heavy.woff') format('woff'),
+        url('Barques-Heavy.ttf') format('truetype'),
+        url('Barques-Heavy.svg#Barques-Heavy') format('svg');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barques';
+    src: url('Barques-Bold.eot');
+    src: url('Barques-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Barques-Bold.woff2') format('woff2'),
+        url('Barques-Bold.woff') format('woff'),
+        url('Barques-Bold.ttf') format('truetype'),
+        url('Barques-Bold.svg#Barques-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barques';
+    src: url('Barques-Light.eot');
+    src: url('Barques-Light.eot?#iefix') format('embedded-opentype'),
+        url('Barques-Light.woff2') format('woff2'),
+        url('Barques-Light.woff') format('woff'),
+        url('Barques-Light.ttf') format('truetype'),
+        url('Barques-Light.svg#Barques-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+

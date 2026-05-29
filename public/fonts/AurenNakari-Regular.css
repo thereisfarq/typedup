@@ -1,0 +1,12 @@
+/* Webfont: AurenNakari-Regular */@font-face {
+    font-family: 'AurenNakari';
+    src: url('AurenNakari-Regular.eot'); /* IE9 Compat Modes */
+    src: url('AurenNakari-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('AurenNakari-Regular.woff') format('woff'), /* Modern Browsers */
+         url('AurenNakari-Regular.woff2') format('woff2'), /* Modern Browsers */
+         url('AurenNakari-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
