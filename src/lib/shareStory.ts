@@ -1,9 +1,9 @@
 /**
- * Generates a 1080x1920 Instagram Story card (TypedUp logo, a "Play Now"
- * button, and the MADE BY AHFOS credit) on a canvas, and shares it via the
- * Web Share API (which surfaces Instagram as a share target on iOS/Android),
- * falling back to a direct image download + copied link on desktop or
- * unsupported browsers.
+ * Generates a 1080x1920 Instagram Story card (the TypedUp logo, a link line
+ * pointing at the game, and the MADE BY AHFOS credit) on a canvas, and
+ * shares it via the Web Share API (which surfaces Instagram as a share
+ * target on iOS/Android), falling back to a direct image download + copied
+ * link on desktop or unsupported browsers.
  */
 
 const CARD_W = 1080;
@@ -18,40 +18,33 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-function roundRectPath(
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  r: number,
-): void {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.arcTo(x + w, y, x + w, y + h, r);
-  ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r);
-  ctx.arcTo(x, y, x + w, y, r);
-  ctx.closePath();
+interface TextSegment {
+  text: string;
+  color: string;
 }
 
-function drawLetterSpacedText(
+function drawLetterSpacedSegments(
   ctx: CanvasRenderingContext2D,
-  text: string,
+  segments: TextSegment[],
   centerX: number,
   y: number,
   spacing: number,
 ): void {
-  const chars = [...text];
-  const widths = chars.map((c) => ctx.measureText(c).width);
+  const chars: { char: string; color: string }[] = [];
+  for (const seg of segments) {
+    for (const char of seg.text) chars.push({ char, color: seg.color });
+  }
+
+  const widths = chars.map((c) => ctx.measureText(c.char).width);
   const totalWidth =
     widths.reduce((sum, w) => sum + w, 0) + spacing * (chars.length - 1);
 
   const prevAlign = ctx.textAlign;
   ctx.textAlign = "left";
   let x = centerX - totalWidth / 2;
-  chars.forEach((char, i) => {
-    ctx.fillText(char, x, y);
+  chars.forEach((c, i) => {
+    ctx.fillStyle = c.color;
+    ctx.fillText(c.char, x, y);
     x += widths[i] + spacing;
   });
   ctx.textAlign = prevAlign;
@@ -74,54 +67,41 @@ export async function drawStoryCard(
 
   const logoImg = await loadImage(logoSrc);
 
-  // --- Logo: "Typed" wordmark + the red/black "up" mark ---
-  const logoCenterY = CARD_H * 0.4;
-  const typedFontPx = 132;
-  ctx.font = `700 ${typedFontPx}px "Helvetica Neue", Arial, sans-serif`;
-  ctx.fillStyle = "#000000";
-  ctx.textAlign = "left";
-  ctx.textBaseline = "alphabetic";
-
-  const markHeight = typedFontPx;
-  const markWidth = markHeight * (logoImg.width / logoImg.height);
-  const typedWidth = ctx.measureText("Typed").width;
-  const totalLogoWidth = typedWidth + markWidth;
-  const logoStartX = (CARD_W - totalLogoWidth) / 2;
-
-  const metrics = ctx.measureText("Typed");
-  const capHeight =
-    metrics.actualBoundingBoxAscent ?? typedFontPx * 0.72;
-  const textBaselineY = logoCenterY + capHeight / 2;
-  ctx.fillText("Typed", logoStartX, textBaselineY);
+  // --- Logo: just the TypedUp mark, nothing else drawn on top of it ---
+  const logoCenterY = CARD_H * 0.42;
+  const logoWidth = CARD_W * 0.66;
+  const logoHeight = logoWidth * (logoImg.height / logoImg.width);
   ctx.drawImage(
     logoImg,
-    logoStartX + typedWidth,
-    logoCenterY - markHeight / 2,
-    markWidth,
-    markHeight,
+    (CARD_W - logoWidth) / 2,
+    logoCenterY - logoHeight / 2,
+    logoWidth,
+    logoHeight,
   );
 
-  // --- "Play Now" button ---
-  const btnW = 620;
-  const btnH = 148;
-  const btnX = (CARD_W - btnW) / 2;
-  const btnY = logoCenterY + 260;
-
-  ctx.fillStyle = "#c41e24";
-  roundRectPath(ctx, btnX, btnY, btnW, btnH, btnH / 2);
-  ctx.fill();
-
-  ctx.fillStyle = "#ffffff";
-  ctx.font = `600 58px "Helvetica Neue", Arial, sans-serif`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("Play Now  ↗", btnX + btnW / 2, btnY + btnH / 2 + 4);
+  // --- Link line, styled like the footer credit but in brand colors ---
+  ctx.font = `600 42px "Helvetica Neue", Arial, sans-serif`;
+  ctx.textBaseline = "alphabetic";
+  drawLetterSpacedSegments(
+    ctx,
+    [
+      { text: "ahfos.github.io/", color: "#000000" },
+      { text: "typedup", color: "#c41e24" },
+    ],
+    CARD_W / 2,
+    logoCenterY + 190,
+    2,
+  );
 
   // --- MADE BY AHFOS footer, small + grey like the home screen ---
   ctx.font = `500 32px "Helvetica Neue", Arial, sans-serif`;
-  ctx.fillStyle = "#888888";
-  ctx.textBaseline = "alphabetic";
-  drawLetterSpacedText(ctx, "MADE BY AHFOS", CARD_W / 2, CARD_H - 120, 9);
+  drawLetterSpacedSegments(
+    ctx,
+    [{ text: "MADE BY AHFOS", color: "#888888" }],
+    CARD_W / 2,
+    CARD_H - 120,
+    9,
+  );
 }
 
 export interface StoryShareResult {
