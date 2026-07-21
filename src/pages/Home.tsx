@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "@/components/Logo";
+import { ShareStoryCard } from "@/components/ShareStoryCard";
 import { playHoverSound } from "@/lib/sounds";
 import "./Home.css";
 
@@ -9,8 +11,36 @@ const LEVELS = [
 ] as const;
 
 export function Home() {
+  const [shareOpen, setShareOpen] = useState(false);
+
   return (
     <main className="home page-enter">
+      <button
+        type="button"
+        className="home__share-trigger"
+        aria-label="Share to Instagram Story"
+        onClick={() => setShareOpen(true)}
+        onMouseEnter={playHoverSound}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="18" cy="5" r="3" />
+          <circle cx="6" cy="12" r="3" />
+          <circle cx="18" cy="19" r="3" />
+          <line x1="8.6" y1="10.6" x2="15.4" y2="6.4" />
+          <line x1="8.6" y1="13.4" x2="15.4" y2="17.6" />
+        </svg>
+      </button>
+
       <div className="home__main">
         <div className="home__logo">
           <Logo size="lg" markOnly />
@@ -39,6 +69,8 @@ export function Home() {
           MADE BY AHFOS
         </a>
       </footer>
+
+      <ShareStoryCard open={shareOpen} onClose={() => setShareOpen(false)} />
     </main>
   );
 }
