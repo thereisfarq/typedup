@@ -61,7 +61,7 @@ export function Home() {
       </div>
       <footer className="home__credit">
         <a
-          href="https://www.ahfos.com"
+          href="https://www.thereisfarq.com"
           target="_blank"
           rel="noopener noreferrer"
           onMouseEnter={playHoverSound}
