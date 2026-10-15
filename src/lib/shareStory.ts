@@ -85,7 +85,7 @@ export async function drawStoryCard(
   drawLetterSpacedSegments(
     ctx,
     [
-      { text: "ahfos.github.io/", color: "#ffffff" },
+      { text: "thereisfarq.github.io/", color: "#ffffff" },
       { text: "typedup", color: "#e5c7ca" },
     ],
     CARD_W / 2,
@@ -183,7 +183,7 @@ export async function shareStoryImage(
   }
 }
 
-/** The public URL of the game, e.g. https://ahfos.github.io/typedup/ */
+/** The public URL of the game, e.g. https://thereisfarq.github.io/typedup/ */
 export function gameShareUrl(): string {
   const base = `${window.location.origin}${import.meta.env.BASE_URL}`;
   return base.endsWith("/") ? base : `${base}/`;
