@@ -38,7 +38,7 @@ Open [http://localhost:5173](http://localhost:5173).
 
 Push to `main` — the workflow builds and publishes to:
 
-`https://YOUR_USERNAME.github.io/typedup/`
+`https://thereisfarq.github.io/typedup/`
 
 Fonts in `public/fonts/` are included in the build automatically.
 
