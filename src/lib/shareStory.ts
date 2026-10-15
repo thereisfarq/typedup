@@ -1,6 +1,6 @@
 /**
  * Generates a 1080x1920 Instagram Story card (the TypedUp logo, a link line
- * pointing at the game, and the MADE BY AHFOS credit) on a canvas, and
+ * pointing at the game, and the MADE BY THEREISFARQ credit) on a canvas, and
  * shares it via the Web Share API (which surfaces Instagram as a share
  * target on iOS/Android), falling back to a direct image download + copied
  * link on desktop or unsupported browsers.
@@ -93,11 +93,11 @@ export async function drawStoryCard(
     2,
   );
 
-  // --- MADE BY AHFOS footer, small + grey like the home screen ---
+  // --- MADE BY THEREISFARQ footer, small + grey like the home screen ---
   ctx.font = `500 32px "Inter Tight", "Helvetica Neue", Arial, sans-serif`;
   drawLetterSpacedSegments(
     ctx,
-    [{ text: "MADE BY AHFOS", color: "#ffffffb3" }],
+    [{ text: "MADE BY THEREISFARQ", color: "#ffffffb3" }],
     CARD_W / 2,
     CARD_H - 120,
     9,
