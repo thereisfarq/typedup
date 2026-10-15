@@ -25,7 +25,7 @@ export function ShareStoryCard({ open, onClose }: ShareStoryCardProps) {
     if (!canvas) return;
 
     let cancelled = false;
-    drawStoryCard(canvas, assetUrl("logo-up.png"))
+    drawStoryCard(canvas, assetUrl("typedup-wordmark.svg"))
       .then(() => {
         if (!cancelled) setReady(true);
       })

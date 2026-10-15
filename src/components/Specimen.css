@@ -1,35 +1,5 @@
-.specimen {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1.5rem;
-  min-height: 200px;
-}
-
-.specimen__text {
-  text-align: center;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  line-height: 1.35;
-  max-width: 42rem;
-  opacity: 0.35;
-  transition: opacity var(--transition-fast);
-  cursor: text;
-  outline: none;
-  border: none;
-  min-height: 1.35em;
-}
-
-.specimen__text:focus {
-  opacity: 1;
-}
-
-.specimen__text--loaded {
-  opacity: 1;
-}
-
-.specimen__text:empty::before {
-  content: "Click to type anything…";
-  opacity: 0.35;
-  font-family: var(--ui-font);
-}
+.specimen{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem;min-height:200px}
+.specimen__text{text-align:center;font-size:clamp(1.5rem,4vw,3rem);line-height:1.35;max-width:42rem;opacity:.45;transition:opacity var(--transition-fast);cursor:text;outline:none;border:1px solid transparent;border-radius:8px;padding:.5rem .75rem;min-height:1.35em;overflow-wrap:anywhere}
+.specimen__text:focus{opacity:1;border-color:var(--border-subtle);background:var(--surface-raised)}
+.specimen__text--loaded{opacity:1}
+.specimen__text:empty::before{content:"Click to type anything…";opacity:.45;font-family:var(--ui-font)}

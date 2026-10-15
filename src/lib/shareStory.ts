@@ -61,8 +61,8 @@ export async function drawStoryCard(
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas 2D context is unavailable");
 
-  // Background — matches the site's white/black brand.
-  ctx.fillStyle = "#ffffff";
+  // Background — matches the site's plum and blush visual system.
+  ctx.fillStyle = "#412833";
   ctx.fillRect(0, 0, CARD_W, CARD_H);
 
   const logoImg = await loadImage(logoSrc);
@@ -80,13 +80,13 @@ export async function drawStoryCard(
   );
 
   // --- Link line, styled like the footer credit but in brand colors ---
-  ctx.font = `600 42px "Helvetica Neue", Arial, sans-serif`;
+  ctx.font = `600 42px "Inter Tight", "Helvetica Neue", Arial, sans-serif`;
   ctx.textBaseline = "alphabetic";
   drawLetterSpacedSegments(
     ctx,
     [
-      { text: "ahfos.github.io/", color: "#000000" },
-      { text: "typedup", color: "#c41e24" },
+      { text: "ahfos.github.io/", color: "#ffffff" },
+      { text: "typedup", color: "#e5c7ca" },
     ],
     CARD_W / 2,
     logoCenterY + 190,
@@ -94,10 +94,10 @@ export async function drawStoryCard(
   );
 
   // --- MADE BY AHFOS footer, small + grey like the home screen ---
-  ctx.font = `500 32px "Helvetica Neue", Arial, sans-serif`;
+  ctx.font = `500 32px "Inter Tight", "Helvetica Neue", Arial, sans-serif`;
   drawLetterSpacedSegments(
     ctx,
-    [{ text: "MADE BY AHFOS", color: "#888888" }],
+    [{ text: "MADE BY AHFOS", color: "#ffffffb3" }],
     CARD_W / 2,
     CARD_H - 120,
     9,
