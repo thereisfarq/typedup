@@ -1,6 +1,5 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#412833;--fg:#fff;--border:#e5c7ca;--border-subtle:#e5c7ca66;--accent:#e5c7ca;--muted:#fff;--surface-raised:#523743;--hover:#e5c7ca;--hover-ink:#412833;--ui-font:"Inter Tight",sans-serif;--transition-fast:180ms ease-out;--transition-route:200ms ease-out}
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap');
 html,body,#root{min-height:100%;height:100%}
 body{background:var(--bg);color:var(--fg);font-family:var(--ui-font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 button,input{font:inherit;color:inherit}
