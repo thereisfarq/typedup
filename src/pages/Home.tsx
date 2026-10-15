@@ -66,7 +66,7 @@ export function Home() {
           rel="noopener noreferrer"
           onMouseEnter={playHoverSound}
         >
-          MADE BY AHFOS
+          THEREISFARQ
         </a>
       </footer>
 
