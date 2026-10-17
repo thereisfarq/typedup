@@ -15,7 +15,7 @@ export function Home() {
 
   return (
     <main className="home page-enter">
-      <a className="farq-outpost farq-outpost--home" href="https://thereisfarq.github.io/" aria-label="Farq Outpost home"><span aria-hidden="true">↖</span><span>Farq Outpost</span></a>
+      <a className="farq-outpost farq-outpost--home" href="https://thereisfarq.github.io/" aria-label="Farq Outpost home"><span>Farq Outpost | All Tools</span><span className="outpost-arrow" aria-hidden="true">↗</span></a>
       <button
         type="button"
         className="home__share-trigger"
