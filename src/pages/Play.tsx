@@ -190,7 +190,7 @@ export function Play() {
   return (
     <main className="play page-enter">
       <header className="play__header">
-        <a className="farq-outpost" href="https://thereisfarq.github.io/" aria-label="Farq Outpost home"><span aria-hidden="true">↖</span><span>Farq Outpost</span></a>
+        <a className="farq-outpost" href="https://thereisfarq.github.io/" aria-label="Farq Outpost home"><span>Farq Outpost | All Tools</span><span className="outpost-arrow" aria-hidden="true">↗</span></a>
         <Link to="/" className="play__back" onMouseEnter={playHoverSound}>
           ← Back
         </Link>
