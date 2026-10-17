@@ -10,3 +10,6 @@
 .play__error{text-align:center;max-width:20rem;line-height:1.5;opacity:.9}
 .play__error code{font-size:.9em;background:var(--surface-raised);padding:.15rem .3rem;border-radius:4px}
 @media(max-width:520px){.play__header{padding:.75rem .8rem;gap:.4rem}.play__header .farq-outpost{padding:7px 8px}.play__header .farq-outpost span:last-child{display:none}.play__back{font-size:.75rem;padding:.45rem .55rem}.play__prompt{padding-top:1rem}}
+
+/* The TypedUp mark is already present on its home screen. */
+.play__header .logo{display:none!important}
